@@ -395,3 +395,8 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = Bible2PPTApp(root)
     root.mainloop()
+
+def main():
+    root = tk.Tk()
+    app = Bible2PPTApp(root)
+    root.mainloop()

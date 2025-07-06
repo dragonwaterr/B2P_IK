@@ -56,7 +56,7 @@
 
 4. **프로그램 실행**
    ```bash
-   python -m ui.gui
+   python main.py
    ```
 
 ---
@@ -70,19 +70,29 @@
    pip install pyinstaller
    ```
 
-2. **실행 파일 생성**
-   ```bash
-   pyinstaller --onefile --windowed --name b2p_IK ui/gui.py
-   ```
+2. **아이콘 파일 준비**
+   - `logo1.jpg`를 [icoconvert.com](https://icoconvert.com/) 등에서 `logo1.ico`로 변환하여 프로젝트 루트에 저장하세요.
 
-3. **배포 준비**
-   - 생성된 `dist/b2p_IK.exe` 파일을 프로젝트 루트로 복사
-   - `data`, `templates` 폴더와 함께 배포
-   - `hide_folders.bat` 파일도 포함
+3. **실행 파일 생성**
+   - 아래 명령어를 실행하면, `B2P_IK.exe`가 현재 B2P_IK 폴더(루트)에 바로 생성됩니다.
+   - 반드시 `main.py`가 있는 폴더에서 실행하세요.
+   ```bash
+   pyinstaller --onefile --windowed --icon=logo1.ico --name B2P_IK main.py
+   ```
+   - 옵션 설명:
+     - `--onefile` : 단일 exe로 패키징
+     - `--windowed` : 콘솔창 없이 GUI만 실행
+     - `--icon=logo1.ico` : 아이콘 지정 (ico 파일 필요)
+     - `--name B2P_IK` : 실행파일 이름 지정
+
+4. **배포 준비**
+   - 생성된 `B2P_IK.exe` 파일을 B2P_IK 폴더(루트)에 둡니다.
+   - `data`, `templates` 폴더와 같은 위치에 두세요.
+   - `hide_folders.bat`, `사용설명서.txt` 파일도 함께 배포하세요.
 
 ### 주의사항
 
-- **패키징된 실행 파일은 `data`, `templates` 폴더와 함께 동작합니다. (data, templates, 패키징한 실행파일이 같은 디렉토리에 있어야함.)**
+- **패키징된 실행 파일은 `data`, `templates` 폴더와 같은 디렉토리에 있어야 정상 동작합니다. (data, templates, 패키징한 실행파일이 같은 디렉토리에 있어야함.)**
 - 실행 파일만 별도로 이동시키면 프로그램이 정상동작하지 않습니다.
 - 배포 시에는 전체 폴더 구조를 유지해야 합니다.
 
@@ -184,19 +194,21 @@
 
 ```
 B2P_IK/
+├── main.py                  # 프로그램 진입점 (패키징 대상)
 ├── core/
-│   ├── ppt_generator.py      # PPT 생성 핵심 로직
+│   └── ppt_generator.py     # PPT 생성 핵심 로직
 ├── ui/
-│   └── gui.py                # GUI 인터페이스
+│   └── gui.py               # GUI 인터페이스 (def main() 포함)
 ├── data/
-│   ├── cache/                # 성경 데이터 캐시
-│   │   └── bible_data.json     # 개역개정 성경 데이터 파일
-│   ├── config.json           # 설정 파일
-│   └── bg_images.json        # 배경 이미지 설정
-├── templates/                # PPT 템플릿 파일들
-├── hide_folders.bat          # 폴더 숨김 처리
-├── 사용설명서.txt            # 사용 설명서
-└── README.md                 # 프로젝트 문서
+│   ├── cache/
+│   │   └── bible_data.json  # 개역개정 성경 데이터 파일
+│   ├── config.json
+│   └── bg_images.json
+├── templates/               # PPT 템플릿 파일들
+├── B2P_IK.exe               # 패키징된 실행 파일 (직접 생성됨)
+├── hide_folders.bat
+├── 사용설명서.txt
+└── README.md
 ```
 
 ---
@@ -213,3 +225,22 @@ B2P_IK/
 
 **updated 2025-07-06 (v2)**  
 *written by dragonwaterr.* 
+
+---
+
+## 📦 실제 사용(배포)시 폴더 구조 예시
+
+```
+B2P_IK/
+├── B2P_IK.exe            # 실행 파일 (패키징 후 생성 : 바로가기 만들어서 사용 권장)
+├── templates/            # PPT 템플릿 폴더 (숨김 처리 권장)
+├── data/                 # 성경 데이터 및 설정 폴더 (숨김 처리 권장)
+├── hide_folders.bat      # 폴더 숨김 처리용 배치파일
+└── 사용설명서.txt        # 사용자 설명서
+```
+
+- **templates, data 폴더는 숨김 처리되어 있을 수 있습니다.**
+- 반드시 위 파일/폴더들이 모두 같은 디렉토리에 있어야 정상 동작합니다.
+- `hide_folders.bat`를 실행하면 templates, data 폴더가 숨김 처리됩니다.
+
+--- 
