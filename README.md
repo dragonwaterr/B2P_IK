@@ -9,13 +9,6 @@
   - `{성경이름} {장}:{절}` / `{성경이름}{장}:{절}` 모두 가능
 - ✅ PPT 생성할 성경구절 범위 입력 후 Enter 키 눌렀을 때, 곧바로 PPT 생성 버튼 실행되도록 처리
 
-## ⚠️ 주의사항
-
-- **해당 압축파일의 구성요소들을 따로따로 다른폴더로 옮기지 마세요!**
-- 압축해제한 B2P_IK 폴더를 아무위치에 넣고, `b2p_IK.exe`(실행파일)의 바로가기를 만들어서 사용하시길 바랍니다. (b2p_IK.exe 파일 우클릭 후 '바로가기 만들기' 클릭.)
-- `b2p_IK.exe`는 함께 다운받은 폴더들(숨김처리 되어있음)과 함께 동작하기 때문에, `b2p_IK.exe` 파일만 다른 폴더로 이동시키면 프로그램이 정상동작하지 않습니다.
-- 만약 `b2p_IK` 폴더에 'data', 'templates'라는 이름을 가진 폴더들이 숨김처리 되어있지않고 그대로 보인다면, `hide_folders.bat`를 더블클릭하여 실행하세요.
-
 ## 🚀 기능 요약
 
 - 📝 PPT로 생성하고 싶은 성경 구절을 입력할 수 있습니다.
@@ -34,6 +27,64 @@
 - 🏷️ 템플릿 3개의 이름을 수정할 수 있습니다.
 - ⚡ PPT 생성버튼을 누르면 PPT가 생성됩니다.
 - 📚 아래쪽에 '성경책이름-약어' 쌍 사전을 제공합니다.
+
+---
+
+## 🛠️ 개발 환경 설정
+
+### 필수 요구사항
+
+- Python 3.7 이상
+- pip (Python 패키지 관리자)
+
+### 설치 방법
+
+1. **저장소 클론**
+   ```bash
+   git clone https://github.com/dragonwaterr/B2P_IK.git
+   cd B2P_IK
+   ```
+
+2. **필요한 패키지 설치**
+   ```bash
+   pip install python-pptx webdriver-manager
+   ```
+
+3. **성경 데이터 준비**
+   - `data/cache/bible_data.json` 파일이 필요합니다.
+   - 이 파일이 없다면 성경 데이터를 별도로 준비해야 합니다.
+
+4. **프로그램 실행**
+   ```bash
+   python -m ui.gui
+   ```
+
+---
+
+## 📦 실행 파일 패키징
+
+### PyInstaller를 사용한 패키징
+
+1. **PyInstaller 설치**
+   ```bash
+   pip install pyinstaller
+   ```
+
+2. **실행 파일 생성**
+   ```bash
+   pyinstaller --onefile --windowed --name b2p_IK ui/gui.py
+   ```
+
+3. **배포 준비**
+   - 생성된 `dist/b2p_IK.exe` 파일을 프로젝트 루트로 복사
+   - `data`, `templates` 폴더와 함께 배포
+   - `hide_folders.bat` 파일도 포함
+
+### 주의사항
+
+- **패키징된 실행 파일은 `data`, `templates` 폴더와 함께 동작합니다.**
+- 실행 파일만 별도로 이동시키면 프로그램이 정상동작하지 않습니다.
+- 배포 시에는 전체 폴더 구조를 유지해야 합니다.
 
 ---
 
@@ -126,6 +177,37 @@
 # 복잡한 조합
 창세기1:1-31,2:1-25;출애굽기3:1-22;레위기1:1-17
 ```
+
+---
+
+## 📁 프로젝트 구조
+
+```
+B2P_IK/
+├── core/
+│   ├── ppt_generator.py      # PPT 생성 핵심 로직
+├── ui/
+│   └── gui.py                # GUI 인터페이스
+├── data/
+│   ├── cache/                # 성경 데이터 캐시
+│   │   └── bible_data.json     # 개역개정 성경 데이터 파일
+│   ├── config.json           # 설정 파일
+│   └── bg_images.json        # 배경 이미지 설정
+├── templates/                # PPT 템플릿 파일들
+├── hide_folders.bat          # 폴더 숨김 처리
+├── 사용설명서.txt            # 사용 설명서
+└── README.md                 # 프로젝트 문서
+```
+
+---
+
+## 🤝 기여하기
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
