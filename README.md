@@ -210,22 +210,6 @@ B2P_IK/
 ├── 사용설명서.txt
 └── README.md
 ```
-
----
-
-## 🤝 기여하기
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-**updated 2025-07-06 (v2)**  
-*written by dragonwaterr.* 
-
 ---
 
 ## 📦 실제 사용(배포)시 폴더 구조 예시
@@ -242,5 +226,19 @@ B2P_IK/
 - **templates, data 폴더는 숨김 처리되어 있을 수 있습니다.**
 - 반드시 위 파일/폴더들이 모두 같은 디렉토리에 있어야 정상 동작합니다.
 - `hide_folders.bat`를 실행하면 templates, data 폴더가 숨김 처리됩니다.
+---
+
+## 🤝 기여하기
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+**updated 2025-07-06 (v2)**  
+*written by dragonwaterr.* 
 
 --- 
